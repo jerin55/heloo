@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% load static %}
+      
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <style>
+   body{
+                background-color:white;
+            }
+  form{
+                background-color: darkslategray;
+                padding-top: 30px;
+                padding-bottom: 20px;
+                border-radius: 10px;
+            }
+   </style>
+    </head>
+        <body >
+            <nav class="  navbar navbar-expand-md bg-dark navbar-dark  fixed-top ">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
+                    <span class="navbar-toggler-icon" ></span>
+                </button>
+            
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class=" for navbar-nav  " style="margin-right:10px ; padding-right: 40px; ;">
+                   <li class="nav-item" >
+                       <a href="Adminhome" class="nav-link" ><b>Home</b></a>
+                   </li>
+                   
+                <li class="nav-item">
+                    <a href="signup" class="nav-link" target="_blank"><b>Sign Up</b></a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" target="_blank"><b>About Us</b></a>
+                </li>
+                
+               
+    
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"></a>
+                    <div class="dropdown-menu" style="background-color:grey ;">
+                        <a href="{% url 'logout' %}"  class="btn btn-info">LOGOUT</a>
+                     
+    
+                        
+                    </div>
+                </li>
+                </ul>
+            </div>
+            </nav>
+            {% block content %}
+
+            <h1 class="container" style="text-align: center; text-decoration: underline;">STUDENTS LIST</h1>
+            <div class="container" style="text-align: center;">
+    
+                <table  style=" margin-top: 50px; " class="table">
+                    <thead style="text-align: center;">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">USERNAME</th>
+                        <th scope="col">FIRST NAME</th>
+                        <th scope="col">LAST NAME</th>
+                        <th scope="col">EMAIL</th>
+                       
+                       
+                
+                
+                    </tr>
+                </thead>
+                
+                    <tbody style="text-align: center;" class="container">
+                        {% for users in users   %}
+                        <tr >
+                            <th scope="row">{{ users.id   }}</th>
+                            
+                            <td>{{ users.username }}</td>
+                            <td>{{ users.first_name }}</td>
+                            <td>{{ users.last_name }}</td>
+                            <td>{{ users.email }}</td>
+                            <td> 
+                               
+                                <a class="btn btn-warning" style="color: red;" href="{% url 'deluser' users.id %}">Delete</a>
+                            </td>
+        
+                            
+                           
+                            
+                               
+                            
+                
+                
+                            
+                             
+                           
+                
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            
+        </div>
+    
+            {% endblock %}
+        </body>
+        </html>

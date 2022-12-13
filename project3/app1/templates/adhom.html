@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+      
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <style>
+   body{
+                background-color:white;
+            }
+  form{
+                background-color: darkslategray;
+                padding-top: 30px;
+                padding-bottom: 20px;
+                border-radius: 10px;
+            }
+            .fo:hover{
+        
+        transform:scale(1.3);
+        z-index:2;
+        
+        
+    }
+   </style>
+    </head>
+        <body >
+            <nav class="  navbar navbar-expand-md bg-dark navbar-dark  fixed-top ">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
+                    <span class="navbar-toggler-icon" ></span>
+                </button>
+            
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class=" for navbar-nav  " style="margin-right:10px ; padding-right: 40px; ;">
+
+                    
+
+                    {% if user.is_authenticated %}
+
+                    <li class="nav-item" >
+                     <a href="home" class="nav-link scrollto active " ><b>{{ user.username }}</b></a>
+                    </li>
+                    {% else %}
+ 
+                    <li class="nav-item" >
+                     <a href="uslogin" class="nav-link" ><b>Login</b></a>
+                 </li>
+                 {% endif %}
+                   <li class="nav-item" >
+                       <a href="home" class="nav-link" ><b>Home</b></a>
+                   </li>
+
+                   <li class="nav-item" >
+                    <a href="addproduct" class="nav-link " ><b>Add product</b></a>
+                   </li>      
+                
+
+                <li class="nav-item" >
+                    <a href="admincart" class="nav-link" ><b>cart</b></a>
+                    
+                </li>
+                <li class="nav-item" >
+                    <a href="users" class="nav-link" ><b>users</b></a>
+                    
+                </li>
+                
+               
+    
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"></a>
+                    <div class="dropdown-menu" style="background-color:grey ;">
+                        <a href="logout"  class="btn btn-info">LOGOUT</a>
+                     
+    
+                        
+                    </div>
+                </li>
+                </ul>
+            </div>
+            </nav>
+            {% block content %}
+
+
+            <h1 style="margin-top: 50px;color: white; text-align: center;">hello</h1>
+
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <ul class="carousel-indicators">
+                    <li data-target="demo" data-slide-to="0" class="active"></li>
+                    <li data-target="demo" data-slide-to="1"></li>
+                    <li data-target="demo" data-slide-to="2"></li>
+                </ul>
+            
+                <div class="carousel-inner " >
+                    <div class="carousel-item active" >
+                    <img src="{% static 'images/fs.jpg' %}" alt="j" height="500" width="100%" >
+                   </div>
+                   <div class="carousel-item">
+                       <img src="{% static 'images/pi.jpg' %}" alt="k" width="100%" height="500">
+                   </div>
+                   <div class="carousel-item">
+                       <img src="{% static 'images/sh.jpg' %}" alt="l" width="100%" height="500">
+                   </div>
+                </div>
+               
+            
+                <a class="carousel-control-prev" href="#demo" role="button"  data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                  </a>
+                  <a class="carousel-control-next" href="#demo" data-slide="next" role="button">
+                    <span class="carousel-control-next-icon"></span>
+                  </a>
+                
+              </div>
+            <section class="why-us">
+<div class="container">
+            <div class="row ">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% for product in product %}
+
+                        <div class="col" style="padding: 25px;">
+                            <div class="card">
+                                <img src="{{ product.user_image.url }}" class="card-img-top fo" alt="..."/>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ product.name }}</h4>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{ product.category.category_name }}</li>
+                                    <li style="color: green;" class="list-group-item">{{ product.price }}</li>
+                                </ul>
+                                <div class="card-footer" style="background-color: white;">
+                                    <a href="{% url 'prodes' product.id %}" class="btn btn-dark" >view more</a>
+                                </div>
+                            
+
+                            </div>
+
+                        </div>
+                        {% endfor %}
+
+
+
+
+
+                    </div>
+                    
+                </div>
+
+            </div>
+           
+            
+        </div>
+    </section>
+        </body>
+        </html>
+        {% endblock %}
